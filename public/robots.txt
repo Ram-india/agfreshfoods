@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Update the domain here and in src/data/site.js before going live.
+Sitemap: https://www.agfreshfoods.com/sitemap.xml

@@ -1,0 +1,547 @@
+@import 'tailwindcss';
+
+/* Dark mode is class-driven (toggle + pre-paint script in index.html). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* ---- Brand palette ----
+     Forest Green primary, Fresh Leaf secondary, Turmeric Yellow accent.
+     The 500/600 steps carry white button text at 5.1:1 and links at 6.4:1. */
+  --color-forest-50: #eef7ef;
+  --color-forest-100: #d5ebd7;
+  --color-forest-200: #aed7b2;
+  --color-forest-300: #7fbd86;
+  --color-forest-400: #55a25e;
+  --color-forest-500: #2e7d32;
+  --color-forest-600: #276b2a;
+  --color-forest-700: #1f5522;
+  --color-forest-800: #17401a;
+  --color-forest-900: #102d12;
+  --color-forest-950: #08190a;
+
+  --color-leaf-50: #f0faf1;
+  --color-leaf-100: #dcf3de;
+  --color-leaf-200: #bbe6bf;
+  --color-leaf-300: #8ed494;
+  --color-leaf-400: #66c26e;
+  --color-leaf-500: #4caf50;
+  --color-leaf-600: #3f9443;
+  --color-leaf-700: #337736;
+  --color-leaf-800: #285d2b;
+  --color-leaf-900: #1c421e;
+
+  --color-turmeric-50: #fff9e6;
+  --color-turmeric-100: #fff0bf;
+  --color-turmeric-200: #ffe285;
+  --color-turmeric-300: #ffd44d;
+  --color-turmeric-400: #ffc721;
+  --color-turmeric-500: #ffc107;
+  --color-turmeric-600: #e0a800;
+  --color-turmeric-700: #b88700;
+  --color-turmeric-800: #8f6900;
+  --color-turmeric-900: #664b00;
+
+  /* Karuppu Kavuni (black rice) accent — used by the dark showcase section */
+  --color-kavuni-400: #7c5aa8;
+  --color-kavuni-500: #4a2f6b;
+  --color-kavuni-600: #372251;
+  --color-kavuni-700: #261638;
+  --color-kavuni-800: #170d22;
+  --color-kavuni-900: #0d0714;
+
+  --color-ink: #1f2937;
+  --color-ink-soft: #4b5563;
+  --color-section: #f8faf8;
+
+  /* ---- Typography ---- */
+  --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Depth ---- */
+  --shadow-soft: 0 2px 8px -2px rgb(16 45 18 / 0.08), 0 12px 32px -12px rgb(16 45 18 / 0.14);
+  --shadow-lift: 0 4px 12px -4px rgb(16 45 18 / 0.12), 0 24px 48px -16px rgb(16 45 18 / 0.22);
+  --shadow-glow: 0 0 0 1px rgb(76 175 80 / 0.18), 0 18px 44px -14px rgb(46 125 50 / 0.42);
+
+  /* ---- Motion ---- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-float: float 7s var(--ease-out-soft) infinite;
+  --animate-float-slow: float 11s var(--ease-out-soft) infinite;
+  --animate-marquee: marquee 32s linear infinite;
+  --animate-shimmer: shimmer 2.4s linear infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) rotate(4deg);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Steam and heat-haze wisps on the "why choose us" illustrations. */
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scaleY(0.8);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scaleY(1.15);
+  }
+}
+
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.08);
+  }
+  40% {
+    transform: scale(1.01);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@layer base {
+  :root {
+    --surface: #ffffff;
+    --surface-alt: #f8faf8;
+    --surface-card: #ffffff;
+    --border-hair: rgb(16 45 18 / 0.1);
+    --text-strong: #1f2937;
+    --text-soft: #4b5563;
+    color-scheme: light;
+  }
+
+  .dark {
+    --surface: #0b1410;
+    --surface-alt: #101c15;
+    --surface-card: #14231a;
+    --border-hair: rgb(255 255 255 / 0.1);
+    --text-strong: #eaf2ea;
+    --text-soft: #a7b8ab;
+    color-scheme: dark;
+  }
+
+  * {
+    border-color: var(--border-hair);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--surface);
+    color: var(--text-strong);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    /* Clears the mobile sticky bar so nothing is trapped underneath it. */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-leaf-500);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-leaf-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Respect users who ask the OS for calmer motion. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .surface-alt {
+    background-color: var(--surface-alt);
+  }
+
+  .surface-card {
+    background-color: var(--surface-card);
+  }
+
+  .text-soft {
+    color: var(--text-soft);
+  }
+
+  .hairline {
+    border-color: var(--border-hair);
+  }
+
+  /* Frosted navbar / floating chips */
+  .glass {
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid var(--border-hair);
+  }
+
+  .glass-strong {
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+  }
+
+  /* Full-bleed frosted bar for the navbar — bottom hairline only, no side edges. */
+  .glass-bar {
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-hair);
+  }
+
+  .shell {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Wider gutter-to-gutter track so the full-width navbar reaches toward the
+     viewport edges instead of sitting in a centred island. */
+  .shell-wide {
+    width: 100%;
+    max-width: 100rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 1024px) {
+    .shell-wide {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-leaf-500) 30%, transparent);
+    background: color-mix(in srgb, var(--color-leaf-500) 10%, transparent);
+    padding: 0.375rem 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-forest-600);
+  }
+
+  .dark .eyebrow {
+    color: var(--color-leaf-300);
+  }
+
+  .gradient-text {
+    background: linear-gradient(100deg, var(--color-forest-500), var(--color-leaf-500) 55%, var(--color-turmeric-500));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Grain + leaf texture used behind hero and dark sections */
+  .texture-grain::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    background-image: radial-gradient(circle at 1px 1px, rgb(46 125 50 / 0.14) 1px, transparent 0);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 75%);
+  }
+
+  /* ---------------------------------------------------------------
+     "Why choose us" cards: cursor spotlight + illustration animation.
+     Everything keys off :hover and :focus-within on .reason-card, so the
+     illustrations respond to keyboard focus as well as the mouse.
+     --------------------------------------------------------------- */
+  .reason-card {
+    --rx: 50%;
+    --ry: 0%;
+  }
+
+  .reason-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s var(--ease-out-soft);
+    background: radial-gradient(
+      260px circle at var(--rx) var(--ry),
+      color-mix(in srgb, var(--color-leaf-500) 16%, transparent),
+      transparent 68%
+    );
+  }
+
+  .reason-card:hover::before,
+  .reason-card:focus-within::before {
+    opacity: 1;
+  }
+
+  /* Shared easing for every moving part of the spot illustrations. */
+  .reason-card [class*='ra-'] {
+    transition:
+      transform 0.65s var(--ease-out-soft),
+      opacity 0.45s var(--ease-out-soft);
+  }
+
+  /* --- resting states --- */
+  .reason-card .ra-sun {
+    transform: translateY(14px);
+    opacity: 0.85;
+  }
+  .reason-card .ra-rays {
+    transform: rotate(0deg) scale(0.75);
+    opacity: 0;
+  }
+  .reason-card .ra-scroll {
+    transform: scaleY(0.9);
+  }
+  .reason-card .ra-wheel {
+    transform: rotate(0deg);
+  }
+  .reason-card .ra-lens {
+    transform: translate(14px, 10px) scale(0.9);
+  }
+  .reason-card .ra-check {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 0.7s var(--ease-out-soft) 0.1s;
+  }
+  .reason-card .ra-nope {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  .reason-card .ra-dots {
+    transform: translateY(6px);
+    opacity: 0.5;
+  }
+  .reason-card .ra-spark {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  .reason-card .ra-steam path,
+  .reason-card .ra-heat path {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  .reason-card .ra-bounce {
+    transform: translateY(0);
+  }
+  .reason-card .ra-dosa {
+    transform: rotate(0deg) scale(1);
+  }
+  .reason-card .ra-hand {
+    transform: rotate(0deg);
+  }
+  .reason-card .ra-sweep {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  .reason-card .ra-pour {
+    transform: rotate(0deg);
+  }
+  .reason-card .ra-beat {
+    transform: scale(1);
+  }
+  .reason-card .ra-pulse {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 0.8s var(--ease-out-soft);
+  }
+
+  /* --- active states --- */
+  .reason-card:hover .ra-sun,
+  .reason-card:focus-within .ra-sun {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .reason-card:hover .ra-rays,
+  .reason-card:focus-within .ra-rays {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  .reason-card:hover .ra-scroll,
+  .reason-card:focus-within .ra-scroll {
+    transform: scaleY(1);
+  }
+  .reason-card:hover .ra-wheel,
+  .reason-card:focus-within .ra-wheel {
+    transform: rotate(180deg);
+  }
+  .reason-card:hover .ra-lens,
+  .reason-card:focus-within .ra-lens {
+    transform: translate(-8px, -4px) scale(1.05);
+  }
+  .reason-card:hover .ra-check,
+  .reason-card:focus-within .ra-check {
+    stroke-dashoffset: 0;
+  }
+  .reason-card:hover .ra-nope,
+  .reason-card:focus-within .ra-nope {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .reason-card:hover .ra-dots,
+  .reason-card:focus-within .ra-dots {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .reason-card:hover .ra-spark,
+  .reason-card:focus-within .ra-spark {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .reason-card:hover .ra-steam path,
+  .reason-card:focus-within .ra-steam path,
+  .reason-card:hover .ra-heat path,
+  .reason-card:focus-within .ra-heat path {
+    animation: rise 1.6s var(--ease-out-soft) infinite;
+  }
+  .reason-card:hover .ra-bounce,
+  .reason-card:focus-within .ra-bounce {
+    transform: translateY(-5px);
+  }
+  .reason-card:hover .ra-dosa,
+  .reason-card:focus-within .ra-dosa {
+    transform: rotate(-6deg) scale(1.06);
+  }
+  .reason-card:hover .ra-hand,
+  .reason-card:focus-within .ra-hand {
+    transform: rotate(72deg);
+  }
+  .reason-card:hover .ra-sweep,
+  .reason-card:focus-within .ra-sweep {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .reason-card:hover .ra-pour,
+  .reason-card:focus-within .ra-pour {
+    transform: rotate(-24deg);
+  }
+  .reason-card:hover .ra-beat,
+  .reason-card:focus-within .ra-beat {
+    animation: beat 1.1s ease-in-out infinite;
+  }
+  .reason-card:hover .ra-pulse,
+  .reason-card:focus-within .ra-pulse {
+    stroke-dashoffset: 0;
+  }
+
+  .card-hover {
+    transition:
+      transform 0.5s var(--ease-out-soft),
+      box-shadow 0.5s var(--ease-out-soft),
+      border-color 0.5s var(--ease-out-soft);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in srgb, var(--color-leaf-500) 45%, transparent);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .pb-safe {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+
+  .mask-fade-r {
+    mask-image: linear-gradient(to right, #000 78%, transparent 100%);
+  }
+}
+
+/* Swiper theming — keeps the carousel on brand instead of default blue. */
+.swiper-pagination-bullet {
+  background: var(--color-forest-500);
+  opacity: 0.28;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 22px;
+  border-radius: 999px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--color-forest-500);
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
