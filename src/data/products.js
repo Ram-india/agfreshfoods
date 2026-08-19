@@ -77,7 +77,7 @@ export const products = [
     image: 'product-millet.jpg',
     accent: 'turmeric',
     badge: 'High fibre',
-    packs: ['500 g', '1 kg'],
+    packs: ['500 g', '1 kg',' 2 kg'],
     makes: 'Idly + Dosa',
     shelfLife: '3 days refrigerated',
     description:
@@ -109,7 +109,7 @@ export const products = [
     image: 'product-ragi.jpg',
     accent: 'forest',
     badge: 'Calcium rich',
-    packs: ['500 g', '1 kg'],
+    packs: ['500 g', '1 kg', ' 2 kg'],
     makes: 'Dosa',
     shelfLife: '3 days refrigerated',
     description:
@@ -141,7 +141,7 @@ export const products = [
     image: 'product-wheat.jpg',
     accent: 'turmeric',
     badge: 'Coming Soon',
-    packs: ['500 g'],
+    packs: ['500 g', '1 kg', ' 2 kg'],
     makes: 'Dosa',
     shelfLife: '3 days refrigerated',
     description:

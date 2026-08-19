@@ -119,6 +119,15 @@ export const processSteps = [
     clock: 26,
   },
   {
+    title: 'Traditional Grinding',
+    body: 'Slow stone grinders keep the batter cool, protecting the natural cultures that make it rise.',
+    icon: 'Cog',
+    art: 'step-grind',
+    time: '2:00 AM',
+    dayPart: 'deep night',
+    clock: 26,
+  },
+  {
     title: 'Quality Check',
     body: 'Batch-wise checks on texture, pH, aroma and fermentation before anything moves forward.',
     icon: 'ClipboardCheck',

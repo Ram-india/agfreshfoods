@@ -29,6 +29,10 @@ const benefitFaqs = [
     a: 'They are both unpolished, so both keep their bran and fibre. Black rice additionally carries anthocyanin antioxidants, which brown rice does not have in any meaningful quantity. Brown rice is more widely available and cheaper; black rice brings the antioxidant advantage. Alternating between them is a perfectly sensible approach.',
   },
   {
+    q: 'Is black rice better than brown rice?',
+    a: 'They are both unpolished, so both keep their bran and fibre. Black rice additionally carries anthocyanin antioxidants, which brown rice does not have in any meaningful quantity. Brown rice is more widely available and cheaper; black rice brings the antioxidant advantage. Alternating between them is a perfectly sensible approach.',
+  },
+  {
     q: 'Can people with diabetes eat black rice?',
     a: 'Black rice has a lower glycaemic load than polished white rice and more fibre, and many people managing diabetes find it easier to fit into their diet. It is still a carbohydrate, so portion size continues to matter. Please discuss your own diet with your doctor or dietitian — we make batter, not medical recommendations.',
   },
