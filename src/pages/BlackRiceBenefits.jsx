@@ -49,6 +49,15 @@ const benefitFaqs = [
     a: 'It yields less per acre than modern high-yield paddy, takes longer to mature, and is grown by a much smaller number of farmers. The price reflects genuine scarcity rather than a premium positioning exercise.',
   },
   {
+    q: 'Is black rice gluten free?',
+    a: 'Yes, all rice is naturally gluten free, including Karuppu Kavuni. Our Karuppu Kavuni batter contains only black rice, urad dal, fenugreek, salt and water. Note that our Wheat Dosa Batter does contain gluten, and we make products on shared equipment, so we cannot claim a certified gluten-free facility.',
+  },
+  {
+    q: 'Why is black rice more expensive?',
+    a: 'It yields less per acre than modern high-yield paddy, takes longer to mature, and is grown by a much smaller number of farmers. The price reflects genuine scarcity rather than a premium positioning exercise.',
+  },
+  
+  {
     q: 'How often should I eat it?',
     a: 'There is no target to hit. Black rice is not a supplement — it is a grain that happens to carry more of the good things than its polished counterpart. A few mornings a week, as part of a varied diet with dal and vegetables, is where it does real work.',
   },

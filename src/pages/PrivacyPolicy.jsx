@@ -161,6 +161,11 @@ export default function PrivacyPolicy() {
                 reviewed against your obligations under India's Digital Personal Data Protection Act, 2023
                 before publishing.
               </p>
+              <p>
+                This policy is provided as a starting point and is not legal advice. Please have it
+                reviewed against your obligations under India's Digital Personal Data Protection Act, 2023
+                before publishing.
+              </p>
             </blockquote>
           </Prose>
         </div>

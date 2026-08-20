@@ -11,7 +11,7 @@ export default function NotFound() {
     <>
       <Seo
         title="Page Not Found"
-        description="The page you were looking for does not exist. Browse our fresh idly and dosa batter range instead."
+        description="The page you were looking for does not exist. Browse our fresh idly and dosa batter range instead.The page you were looking for does not exist. Browse our fresh idly and dosa batter range instead."
         noindex
       />
 
